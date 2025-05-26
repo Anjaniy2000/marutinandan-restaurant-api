@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  postgres_main:
+    image: postgres
+    container_name: marutinandan-postgres-main
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: marutinandan_restaurant_db_main
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_main:/var/lib/postgresql/data
+
+volumes:
+  postgres_main:

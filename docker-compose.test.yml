@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  postgres_test:
+    image: postgres
+    container_name: marutinandan-postgres-test
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: marutinandan_restaurant_db_test
+    ports:
+      - "5434:5432"
+    volumes:
+      - postgres_test:/var/lib/postgresql/data
+
+volumes:
+  postgres_test:

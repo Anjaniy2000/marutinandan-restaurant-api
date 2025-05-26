@@ -41,9 +41,10 @@ tasks.register('upgradeDatabase', JavaExec) {
 	description = "Runs SqlExecutor.java to execute the SQL file against the DB"
 	group = "Database"
 
-	classpath = sourceSets.main.runtimeClasspath
+	classpath = sourceSets.test.runtimeClasspath
 	mainClass = 'com.anjaniy.marutinandan_restaurant_api.utilities.SQLScriptRunner'
 	jvmArgs '-Dfile.encoding=UTF-8'
+	args 'application.properties'
 }
 
 upgradeDatabase.dependsOn classes

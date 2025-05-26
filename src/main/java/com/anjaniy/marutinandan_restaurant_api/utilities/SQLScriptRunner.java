@@ -15,7 +15,7 @@ import java.util.Properties;
 public class SQLScriptRunner {
     public static void main(String[] args) {
         try {
-            Properties props = loadProperties("application.properties");
+            Properties props = loadProperties((args.length > 0) ? args[0] : "application.properties");
             String url = props.getProperty("spring.datasource.url");
             String user = props.getProperty("spring.datasource.username");
             String pass = props.getProperty("spring.datasource.password");
