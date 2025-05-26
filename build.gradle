@@ -1,0 +1,49 @@
+plugins {
+	id 'java'
+	id 'groovy'
+	id 'org.springframework.boot' version '3.5.0'
+	id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.anjaniy'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	runtimeOnly 'org.postgresql:postgresql'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	implementation 'com.github.jsqlparser:jsqlparser:4.9'
+	testImplementation("org.spockframework:spock-core:2.4-M1-groovy-4.0")
+	testImplementation("org.spockframework:spock-spring:2.4-M1-groovy-4.0")
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+test {
+	useJUnitPlatform()
+	testLogging {
+		events "started", "passed", "skipped", "failed"
+	}
+}
+
+tasks.register('upgradeDatabase', JavaExec) {
+	description = "Runs SqlExecutor.java to execute the SQL file against the DB"
+	group = "Database"
+
+	classpath = sourceSets.main.runtimeClasspath
+	mainClass = 'com.anjaniy.marutinandan_restaurant_api.utilities.SQLScriptRunner'
+	jvmArgs '-Dfile.encoding=UTF-8'
+}
+
+upgradeDatabase.dependsOn classes
