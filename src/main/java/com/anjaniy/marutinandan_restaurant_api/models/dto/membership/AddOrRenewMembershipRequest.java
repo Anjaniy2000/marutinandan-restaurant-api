@@ -9,8 +9,8 @@ import java.time.LocalDate;
 
 public class AddOrRenewMembershipRequest {
 
-    @NotBlank(message = "name is required")
-    private String name;
+    @NotBlank(message = "customer_name is required")
+    private String customer_name;
 
     @NotNull(message = "membership_type is required")
     private MembershipType membershipType;
@@ -42,8 +42,12 @@ public class AddOrRenewMembershipRequest {
 
     }
 
-    public String getName() {
-        return name;
+    public String getCustomer_name() {
+        return customer_name;
+    }
+
+    public void setCustomer_name(String customer_name) {
+        this.customer_name = customer_name;
     }
 
     public MembershipType getMembershipType() {
@@ -52,10 +56,6 @@ public class AddOrRenewMembershipRequest {
 
     public void setMembershipType(MembershipType membershipType) {
         this.membershipType = membershipType;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getPhone_number() {
@@ -84,8 +84,8 @@ public class AddOrRenewMembershipRequest {
 
     @Override
     public String toString() {
-        return "CreateMembershipRequest{" +
-                "name='" + name + '\'' +
+        return "AddOrRenewMembershipRequest{" +
+                "customer_name='" + customer_name + '\'' +
                 ", membershipType=" + membershipType +
                 ", phone_number='" + phone_number + '\'' +
                 ", registration_date=" + registration_date +

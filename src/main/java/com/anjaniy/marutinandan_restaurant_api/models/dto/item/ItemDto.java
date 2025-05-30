@@ -4,6 +4,8 @@ import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 
+import java.math.BigDecimal;
+
 public class ItemDto {
     @Min(value = 1, message = "Item id must be greater than 0")
     private int id;
@@ -11,7 +13,7 @@ public class ItemDto {
     @NotBlank(message = "Item name is required")
     private String name;
     @DecimalMin(value = "0.01", inclusive = true, message = "Item price must be greater than 0")
-    private float price;
+    private BigDecimal price;
 
     public ItemDto() {
 
@@ -33,11 +35,11 @@ public class ItemDto {
         this.name = name;
     }
 
-    public float getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
