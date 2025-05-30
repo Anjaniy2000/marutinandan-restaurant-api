@@ -3,7 +3,7 @@
 -- Table: items
 -- Description: Stores basic information of food items.
 
-CREATE TABLE IF NOT EXISTS item (
+CREATE TABLE IF NOT EXISTS items (
     id SERIAL PRIMARY KEY,
     name VARCHAR(30) NOT NULL UNIQUE,
     price NUMERIC(8,2) NOT NULL
@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS item (
 -- Table: membership
 -- Description: Stores membership information of users.
 
-CREATE TABLE IF NOT EXISTS membership (
+CREATE TABLE IF NOT EXISTS memberships (
     id SERIAL PRIMARY KEY,
     customer_name VARCHAR(20) NOT NULL,
     phone_number VARCHAR(15) NOT NULL UNIQUE,

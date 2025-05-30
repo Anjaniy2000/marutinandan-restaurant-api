@@ -3,11 +3,13 @@ package com.anjaniy.marutinandan_restaurant_api.models.dto.item;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
 
+import java.math.BigDecimal;
+
 public class CreateItemRequest {
     @NotBlank(message = "Item name is required")
     private String name;
     @DecimalMin(value = "0.01", inclusive = true, message = "Item price must be greater than 0")
-    private float price;
+    private BigDecimal price;
 
     public CreateItemRequest() {
     }
@@ -20,11 +22,11 @@ public class CreateItemRequest {
         this.name = name;
     }
 
-    public float getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
