@@ -31,31 +31,6 @@ pipeline {
                 bat './gradlew clean test'
             }
         }
-
-        // --- DEPLOY PHASE ---
-        stage('Start Production Container') {
-            steps {
-                bat 'docker-compose -f docker-compose.yml up -d'
-            }
-        }
-
-        stage('Run Production DB Upgrade') {
-            steps {
-                bat './gradlew upgradeDatabase'
-            }
-        }
-
-        stage('Build JAR') {
-            steps {
-                bat './gradlew bootJar'
-            }
-        }
-
-        stage('Run JAR') {
-            steps {
-                bat 'java -jar build\\libs\\marutinandan-restaurant-api-1.0.0.jar'
-            }
-        }
     }
 
     post {
@@ -65,11 +40,11 @@ pipeline {
         }
 
         success {
-            echo '✅ CI/CD pipeline completed successfully!'
+            echo '✅ CI pipeline completed successfully!'
         }
 
         failure {
-            echo '❌ CI/CD pipeline failed!'
+            echo '❌ CI pipeline failed!'
         }
     }
 }
