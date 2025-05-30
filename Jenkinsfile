@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        JAVA_HOME = tool 'jdk'
+        JAVA_HOME = tool 'jdk17'
         PATH = "${JAVA_HOME}/bin:${env.PATH}"
     }
 
@@ -13,22 +13,28 @@ pipeline {
             }
         }
 
+        stage('Set Gradle Executable') {
+            steps {
+                sh 'chmod +x ./gradlew'
+            }
+        }
+        
         // --- TEST PHASE ---
         stage('Start Test Containers') {
             steps {
-                bat 'docker-compose -f docker-compose.test.yml up -d'
+                sh 'docker-compose -f docker-compose.test.yml up -d'
             }
         }
 
         stage('Run Test DB Upgrade') {
             steps {
-                bat './gradlew upgradeDatabase --args="application-test.properties"'
+                sh './gradlew upgradeDatabase --args="application-test.properties"'
             }
         }
 
         stage('Run Tests') {
             steps {
-                bat './gradlew clean test'
+                sh './gradlew clean test'
             }
         }
     }
